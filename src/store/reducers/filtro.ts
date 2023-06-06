@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 type FiltroState = {
-  termo: string
-  criterio: 'tipoContato' | 'todos'
+  termo?: string
+  criterio: 'familia' | 'todos' | 'amigos' | 'trabalho'
   valor?: 'tipoContato'
 }
 
@@ -17,10 +17,14 @@ const filtroSlice = createSlice({
   reducers: {
     alteraTermo: (state, action: PayloadAction<string>) => {
       state.termo = action.payload
+    },
+    alterarFiltro: (state, action: PayloadAction<FiltroState>) => {
+      state.criterio = action.payload.criterio
+      state.valor = action.payload.valor
     }
   }
 })
 
-export const { alteraTermo } = filtroSlice.actions
+export const { alteraTermo, alterarFiltro } = filtroSlice.actions
 
 export default filtroSlice.reducer

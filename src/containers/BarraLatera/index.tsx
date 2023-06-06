@@ -18,10 +18,10 @@ const BarraLateral = () => {
           onChange={(evento) => dispath(alteraTermo(evento.target.value))}
         />
         <S.Filtros>
-          <FiltroCard legenda="familia" contador={3} />
-          <FiltroCard legenda="amigos" contador={2} />
-          <FiltroCard legenda="trabalho" contador={7} />
-          <FiltroCard legenda="todos" contador={12} ativo />
+          <FiltroCard criterio="familia" legenda="familia" />
+          <FiltroCard criterio="amigos" legenda="amigos" />
+          <FiltroCard criterio="trabalho" legenda="trabalho" />
+          <FiltroCard criterio="todos" legenda="todos" />
         </S.Filtros>
       </div>
     </S.Aside>

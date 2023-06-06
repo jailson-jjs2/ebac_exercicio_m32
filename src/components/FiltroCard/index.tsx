@@ -1,16 +1,48 @@
+import { useDispatch, useSelector } from 'react-redux'
 import * as S from './styles'
+import { alterarFiltro } from '../../store/reducers/filtro'
+import { RootReducer } from '../../store'
 
 export type Props = {
   ativo?: boolean
-  contador: number
   legenda: string
+  criterio: 'familia' | 'amigos' | 'trabalho' | 'todos'
 }
 
-const FiltroCard = ({ ativo, contador, legenda }: Props) => (
-  <S.Card ativo={ativo}>
-    <S.Contador>{contador}</S.Contador>
-    <S.Label>{legenda}</S.Label>
-  </S.Card>
-)
+const FiltroCard = ({ legenda, criterio }: Props) => {
+  const dispath = useDispatch()
+  const { filtro, contatos } = useSelector((state: RootReducer) => state)
+
+  const verificaEstaAtivo = () => {
+    const mesmoCriterio = filtro.criterio === criterio
+
+    return mesmoCriterio
+  }
+
+  const contarContatos = () => {
+    if (criterio === 'todos') return contatos.itens.length
+    if (criterio === 'familia') return contatos.itens.length
+    if (criterio === 'amigos') return contatos.itens.length
+    if (criterio === 'trabalho') return contatos.itens.length
+  }
+
+  const filtrar = () => {
+    dispath(
+      alterarFiltro({
+        criterio
+      })
+    )
+  }
+
+  const contador = contarContatos()
+  const ativo = verificaEstaAtivo()
+
+  return (
+    <S.Card ativo={ativo} onClick={filtrar}>
+      <S.Contador>{contador}</S.Contador>
+      <S.Label>{legenda}</S.Label>
+    </S.Card>
+  )
+}
 
 export default FiltroCard
