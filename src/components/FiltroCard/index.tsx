@@ -20,10 +20,16 @@ const FiltroCard = ({ legenda, criterio }: Props) => {
   }
 
   const contarContatos = () => {
-    if (criterio === 'todos') return contatos.itens.length
-    if (criterio === 'familia') return contatos.itens.length
-    if (criterio === 'amigos') return contatos.itens.length
-    if (criterio === 'trabalho') return contatos.itens.length
+    const { itens } = contatos
+
+    if (criterio === 'todos') {
+      return itens.length
+    }
+
+    const contatosFiltrados = itens.filter(
+      (item) => item.tipoContato === criterio
+    )
+    return contatosFiltrados.length
   }
 
   const filtrar = () => {

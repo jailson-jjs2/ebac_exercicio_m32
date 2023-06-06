@@ -18,11 +18,17 @@ const ListaDeContatos = () => {
         contatosFiltrados = contatosFiltrados.filter(
           (item) => item.tipoContato === criterio
         )
+      } else if (criterio === 'familia') {
+        contatosFiltrados = contatosFiltrados.filter(
+          (item) => item.tipoContato === criterio
+        )
+      } else if (criterio === 'trabalho') {
+        contatosFiltrados = contatosFiltrados.filter(
+          (item) => item.tipoContato === criterio
+        )
       }
-      return contatosFiltrados
-    } else {
-      return itens
     }
+    return contatosFiltrados
   }
 
   return (
