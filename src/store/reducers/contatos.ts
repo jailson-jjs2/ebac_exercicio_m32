@@ -9,23 +9,9 @@ const initialState: ContatoState = {
   itens: [
     {
       id: 1,
-      nome: 'Jailson',
+      nome: 'Jailson Joventino',
       tipoContato: 'familia',
-      telefone: '99999',
-      email: 'jjs2@hotmail.com'
-    },
-    {
-      id: 2,
-      nome: 'Renata',
-      tipoContato: 'trabalho',
-      telefone: '99999',
-      email: 'jjs2@hotmail.com'
-    },
-    {
-      id: 3,
-      nome: 'Tiago',
-      tipoContato: 'amigos',
-      telefone: '99999',
+      telefone: '(83) 99909-837',
       email: 'jjs2@hotmail.com'
     }
   ]
@@ -48,10 +34,21 @@ const contatosSlice = createSlice({
       if (indexDoContato >= 0) {
         state.itens[indexDoContato] = action.payload
       }
+    },
+    cadastrar: (state, action: PayloadAction<Contato>) => {
+      const contatoJaExiste = state.itens.find(
+        (tarefa) =>
+          tarefa.nome.toLowerCase() === action.payload.nome.toLowerCase()
+      )
+      if (contatoJaExiste) {
+        alert('Contato já cadastrado!!')
+      } else {
+        state.itens.push(action.payload)
+      }
     }
   }
 })
 
-export const { remover, editar } = contatosSlice.actions
+export const { remover, editar, cadastrar } = contatosSlice.actions
 
 export default contatosSlice.reducer

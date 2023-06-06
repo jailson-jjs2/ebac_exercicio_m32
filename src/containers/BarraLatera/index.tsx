@@ -4,6 +4,7 @@ import { RootReducer } from '../../store'
 
 import * as S from './styles'
 import { alteraTermo } from '../../store/reducers/filtro'
+import { Campo } from '../../styles'
 
 const BarraLateral = () => {
   const dispath = useDispatch()
@@ -11,17 +12,17 @@ const BarraLateral = () => {
   return (
     <S.Aside>
       <div>
-        <S.Campo
+        <Campo
           type="text"
           placeholder="Buscar"
           value={termo}
           onChange={(evento) => dispath(alteraTermo(evento.target.value))}
         />
         <S.Filtros>
-          <FiltroCard criterio="familia" legenda="familia" />
-          <FiltroCard criterio="amigos" legenda="amigos" />
-          <FiltroCard criterio="trabalho" legenda="trabalho" />
-          <FiltroCard criterio="todos" legenda="todos" />
+          <FiltroCard criterio="familia" legenda="Familia" />
+          <FiltroCard criterio="amigos" legenda="Amigos" />
+          <FiltroCard criterio="trabalho" legenda="Trabalho" />
+          <FiltroCard criterio="todos" legenda="Todos" />
         </S.Filtros>
       </div>
     </S.Aside>
