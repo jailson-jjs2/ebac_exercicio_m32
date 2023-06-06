@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import Contato from '../../components/Contatos'
-import { Container } from './styles'
+import { Container, Resultado } from './styles'
 import { RootReducer } from '../../store'
 
 const ListaDeContatos = () => {
@@ -9,6 +9,7 @@ const ListaDeContatos = () => {
 
   const filtraContatos = () => {
     let contatosFiltrados = itens
+
     if (termo !== undefined) {
       contatosFiltrados = itens.filter(
         (item) => item.nome.toLowerCase().search(termo.toLowerCase()) >= 0
@@ -31,15 +32,15 @@ const ListaDeContatos = () => {
     return contatosFiltrados
   }
 
+  const contatos = filtraContatos()
+
   return (
     <Container>
-      <p>2 contatos como: categoria e {termo}</p>
+      <Resultado>
+        {contatos.length} Contato(s) de: {criterio}
+      </Resultado>
       <ul>
-        <li>{termo}</li>
-        <li>{criterio}</li>
-      </ul>
-      <ul>
-        {filtraContatos().map((c) => (
+        {contatos.map((c) => (
           <li key={c.nome}>
             <Contato
               id={c.id}
